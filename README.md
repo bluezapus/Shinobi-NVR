@@ -229,13 +229,13 @@ The project documentation is organized into seven stages.
 
 | Document                                   | Description                                                             |
 | ------------------------------------------ | ----------------------------------------------------------------------- |
-| [`01-requirement.md`](docs/01-requirement.md)   | Hardware, software, CCTV, network, storage, and deployment requirements |
-| [`02-architecture.md`](02-architecture.md) | Overall infrastructure architecture and design                          |
-| [`03-proxmox.md`](03-proxmox.md)           | Proxmox VE host and Shinobi LXC configuration                           |
-| [`04-network.md`](04-network.md)           | Network topology, bridge, addressing, and RTSP connectivity             |
-| [`05-shinobi.md`](05-shinobi.md)           | Shinobi NVR software environment and configuration                      |
-| [`06-rtsp-cctv.md`](06-rtsp-cctv.md)       | RTSP camera integration and CCTV stream architecture                    |
-| [`07-storage.md`](07-storage.md)           | CCTV storage architecture, mount points, filesystem, and capacity       |
+| [`01-requirement.md`](docs/01-requirements.md)   | Hardware, software, CCTV, network, storage, and deployment requirements |
+| [`02-architecture.md`](docs/02-architecture.md) | Overall infrastructure architecture and design                          |
+| [`03-proxmox.md`](docs/03-proxmox.md)           | Proxmox VE host and Shinobi LXC configuration                           |
+| [`04-network.md`](docs/04-network.md)           | Network topology, bridge, addressing, and RTSP connectivity             |
+| [`05-shinobi.md`](docs/05-shinobi.md)           | Shinobi NVR software environment and configuration                      |
+| [`06-rtsp-cctv.md`](docs/06-rtsp-cctv.md)       | RTSP camera integration and CCTV stream architecture                    |
+| [`07-storage.md`](docs/07-storage.md)           | CCTV storage architecture, mount points, filesystem, and capacity       |
 
 ---
 
