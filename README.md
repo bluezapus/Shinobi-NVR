@@ -252,6 +252,7 @@ CCTV Disk : 3.6 TB
 ```
 
 The separation between root storage and recording storage is intentional.
+
 ![ALLOCATIONS](images/allocation.png)
 
 ---
@@ -259,6 +260,7 @@ The separation between root storage and recording storage is intentional.
 ## Storage Design
 
 The CCTV storage is mounted persistently on the Proxmox host.
+
 ![STORAGE-DESIGN](images/architecture-storage02.png)
 
 The Proxmox host uses `/etc/fstab` to mount the filesystem.
