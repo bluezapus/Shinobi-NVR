@@ -7,7 +7,7 @@ The CCTV infrastructure is designed as a virtualized Network Video Recorder
 the centralized NVR application.
 
 The architecture separates the infrastructure into several logical layers:
-![Keterangan](architecture/logical-layer.png)
+![](images/architecture/logical-layer.png)
 
 
 This separation allows the CCTV workload to be managed independently from  
@@ -53,7 +53,7 @@ to the Shinobi container.
 
 CCTV recordings are stored on a dedicated 4 TB HDD mounted on the Proxmox  
 host and exposed to the Shinobi container through a container mount.
-![Keterangan](architecture/topologi02.png)
+![](images/architecture/topologi02.png)
 
 ---
 

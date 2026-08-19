@@ -30,7 +30,7 @@ from consuming the Proxmox system volume.
 
 ## Architecture
 
-![Keterangan](architecture.png)
+![ARCHITECTURE](images/architecture.png)
 
 ---
 
@@ -108,7 +108,7 @@ Proxmox host, and LXC containers.
 The system uses separate storage for the operating system and CCTV
 recordings.
 
-![Keterangan](architecture-storage.png)
+![STRG](images/architecture-storage.png)
 
 
 The dedicated CCTV HDD has a capacity of approximately `3.6 TB`.
@@ -127,7 +127,7 @@ The CCTV infrastructure operates on a production LAN.
 
 For public documentation, production IP addresses are sanitized.
 
-![Keterangan](architecture-network.png)
+![NET-ARC](images/architecture-network.png)
 
 Sanitized addressing:
 
@@ -149,7 +149,7 @@ Sanitized addressing:
 The NVR manages 16 IP cameras.
 
 Each camera provides an RTSP stream to Shinobi.
-![Keterangan](architecture-cctv.png)
+![CCTV-ARC](images/architecture-cctv.png)
 
 The documented camera configuration uses:
 
@@ -170,7 +170,7 @@ against the final production configuration.
 The Shinobi NVR runs inside an unprivileged LXC container.
 
 Current environment:
-![Keterangan](environment.png)
+![ENVI](images/environment.png)
 
 The Shinobi source is located at:
 
@@ -252,14 +252,14 @@ CCTV Disk : 3.6 TB
 ```
 
 The separation between root storage and recording storage is intentional.
-![Keterangan](allocation.png)
+![ALLOCATIONS](images/allocation.png)
 
 ---
 
 ## Storage Design
 
 The CCTV storage is mounted persistently on the Proxmox host.
-![Keterangan](architecture-storage02.png)
+![STORAGE-DESIGN](images/architecture-storage02.png)
 
 The Proxmox host uses `/etc/fstab` to mount the filesystem.
 
@@ -339,20 +339,20 @@ pct config 100
 
 ## Current Status
 
-| Area | Status |
-|---|---|
-| Proxmox VE | Configured |
-| Shinobi LXC | Configured |
-| Network Bridge | Configured |
-| Shinobi Network | Configured |
-| CCTV Storage | Configured |
-| RTSP Integration | Configured |
-| IP Cameras | 16 cameras |
-| Dedicated HDD | Configured |
-| Storage Mount | Configured |
-| LXC Firewall | Enabled |
-| Retention Policy | To be verified |
-| SMART Monitoring | To be documented |
+| Area                 | Status           |
+| -------------------- | ---------------- |
+| Proxmox VE           | Configured       |
+| Shinobi LXC          | Configured       |
+| Network Bridge       | Configured       |
+| Shinobi Network      | Configured       |
+| CCTV Storage         | Configured       |
+| RTSP Integration     | Configured       |
+| IP Cameras           | 16 cameras       |
+| Dedicated HDD        | Configured       |
+| Storage Mount        | Configured       |
+| LXC Firewall         | Enabled          |
+| Retention Policy     | To be verified   |
+| SMART Monitoring     | To be documented |
 | CCTV Backup Strategy | To be documented |
 
 ---

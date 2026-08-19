@@ -147,7 +147,7 @@ The storage is separated from the LXC root disk so that CCTV video
 recordings are stored on the dedicated high-capacity HDD rather than
 the Proxmox system volume.
 
-![Keterangan](shinobi-storage.png)
+![Keterangan](images/screenshots/shinobi-storage.png)
 
 ---
 
@@ -261,7 +261,7 @@ free -h
 lsblk -o NAME,SIZE,MODEL,TYPE,FSTYPE,MOUNTPOINT
 ```
 
-![Keterangan](pvever-free-mount.png)
+![Keterangan](images/screenshots/pvever-free-mount.png)
 ### Network
 
 ```bash
@@ -278,13 +278,13 @@ ip route
 pct config 100
 ```
 
-![Keterangan](shinobi-config.png)
+![](images/screenshots/shinobi-config.png)
 ### Storage Mount
 
 ```bash
 df -h /mnt/hddcctv
 ```
-![Keterangan](hddcctv.png)
+![](images/screenshots/hddcctv.png)
 ### Container Mount
 
 Run inside the Shinobi container:
@@ -293,7 +293,7 @@ Run inside the Shinobi container:
 df -h /mnt/storage
 ```
 
-![Keterangan](shinobi-hdd-storage.png)
+![](images/screenshots/shinobi-hdd-storage.png)
 
 ---
 

@@ -115,7 +115,7 @@ system volume.
 
 The target deployment consists of:
 
-![Keterangan](architecture/topologi01.png)
+![](images/architecture/topologi01.png)
 ### Virtualization
 
 - Proxmox VE is used as the hypervisor.

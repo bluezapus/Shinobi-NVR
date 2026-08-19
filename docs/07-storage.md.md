@@ -767,7 +767,7 @@ cat /etc/fstab
 pct config 100
 ```
 
-![Keterangan](storage-pve.png)
+![](images/screenshots/storage-pve.png)
 ### Check Storage Inside Shinobi
 
 Run inside CT `100`:

@@ -10,7 +10,7 @@ Shinobi receives RTSP video streams from the IP cameras, processes the
 streams through FFmpeg, and stores recorded video on dedicated CCTV  
 storage mounted at `/mnt/storage`.
 
-![Keterangan](shinobi-os.png)
+![](images/screenshots/shinobi-os.png)
 
 ```text
                          Shinobi LXC
