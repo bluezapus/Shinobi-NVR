@@ -229,7 +229,7 @@ The project documentation is organized into seven stages.
 
 | Document                                   | Description                                                             |
 | ------------------------------------------ | ----------------------------------------------------------------------- |
-| [`01-requirement.md`](01-requirement.md)   | Hardware, software, CCTV, network, storage, and deployment requirements |
+| [`01-requirement.md`](docs/01-requirement.md)   | Hardware, software, CCTV, network, storage, and deployment requirements |
 | [`02-architecture.md`](02-architecture.md) | Overall infrastructure architecture and design                          |
 | [`03-proxmox.md`](03-proxmox.md)           | Proxmox VE host and Shinobi LXC configuration                           |
 | [`04-network.md`](04-network.md)           | Network topology, bridge, addressing, and RTSP connectivity             |
