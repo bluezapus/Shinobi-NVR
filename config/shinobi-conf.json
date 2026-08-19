@@ -1,0 +1,43 @@
+{
+   "debugLog": false,
+   "subscriptionId": "",
+   "port": 8080,
+   "passwordType": "sha256",
+   "addStorage": [
+      {
+         "name": "hdd",
+         "path": "/mnt/storage"
+      }
+   ],
+   "pluginKeys": {},
+   "db": {
+      "host": "127.0.0.1",
+      "user": "shinobi",
+      "password": "admin123",
+      "database": "ccio",
+      "port": 3306
+   },
+   "cron": {
+      "key": "bc1fe5ca21a52bd9ee65d68a6b3c3849006ba4c57468762ed51de634def8"
+   },
+   "mail": {
+      "service": "gmail",
+      "auth": {
+         "user": "your_email@gmail.com",
+         "pass": "your_password_or_app_specific_password"
+      }
+   },
+   "detectorMergePamRegionTriggers": true,
+   "doSnapshot": true,
+   "discordBot": false,
+   "dropInEventServer": false,
+   "ftpServer": false,
+   "oldPowerVideo": false,
+   "wallClockTimestampAsDefault": true,
+   "videosDir": "/home/Shinobi/videos",
+   "enableFaceManager": false,
+   "useBetterP2P": true,
+   "smtpServerOptions": {
+      "allowInsecureAuth": true
+   }
+}

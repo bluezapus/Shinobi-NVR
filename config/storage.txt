@@ -1,0 +1,56 @@
+=== LSBLK ===
+NAME                           SIZE MODEL                           TYPE FSTYPE      MOUNTPOINT
+sda                          119.2G HONGTAI SSD SATA 2.5`H500 128GB disk             
+├─sda1                        1007K                                 part             
+├─sda2                           1G                                 part vfat        /boot/efi
+└─sda3                       118.2G                                 part LVM2_member 
+  ├─pve-swap                   5.7G                                 lvm  swap        [SWAP]
+  ├─pve-root                  40.1G                                 lvm  ext4        /
+  ├─pve-data_tmeta               1G                                 lvm              
+  │ └─pve-data-tpool          55.6G                                 lvm              
+  │   ├─pve-data              55.6G                                 lvm              
+  │   ├─pve-vm--100--disk--0    64G                                 lvm  ext4        
+  │   ├─pve-vm--200--disk--0    16G                                 lvm  ext4        
+  │   ├─pve-vm--300--disk--0    30G                                 lvm  ext4        
+  │   └─pve-vm--400--disk--0    25G                                 lvm  ext4        
+  └─pve-data_tdata            55.6G                                 lvm              
+    └─pve-data-tpool          55.6G                                 lvm              
+      ├─pve-data              55.6G                                 lvm              
+      ├─pve-vm--100--disk--0    64G                                 lvm  ext4        
+      ├─pve-vm--200--disk--0    16G                                 lvm  ext4        
+      ├─pve-vm--300--disk--0    30G                                 lvm  ext4        
+      └─pve-vm--400--disk--0    25G                                 lvm  ext4        
+sdb                            1.8T TOSHIBA HDWU120                 disk             
+└─sdb1                         1.8T                                 part ntfs        /mnt/hdd-share
+sdc                            3.6T WDC WD40PURX-64NZ6Y0            disk             
+└─sdc1                         3.6T                                 part ext4        /mnt/hddcctv
+
+=== DF -H ===
+Filesystem            Size  Used Avail Use% Mounted on
+udev                  6.8G     0  6.8G   0% /dev
+tmpfs                 1.4G  2.0M  1.4G   1% /run
+/dev/mapper/pve-root   40G  4.5G   33G  12% /
+tmpfs                 6.8G   49M  6.8G   1% /dev/shm
+efivarfs              128K   11K  113K   9% /sys/firmware/efi/efivars
+tmpfs                 5.0M     0  5.0M   0% /run/lock
+tmpfs                 1.0M     0  1.0M   0% /run/credentials/systemd-journald.service
+tmpfs                 6.8G     0  6.8G   0% /tmp
+/dev/sda2            1022M  8.8M 1014M   1% /boot/efi
+/dev/sdb1             1.9T  1.8T  108G  95% /mnt/hdd-share
+/dev/sdc1             3.6T  515G  2.9T  15% /mnt/hddcctv
+/dev/fuse             128M   16K  128M   1% /etc/pve
+tmpfs                 1.0M     0  1.0M   0% /run/credentials/getty@tty1.service
+tmpfs                 1.4G  4.0K  1.4G   1% /run/user/0
+
+=== FINDMNT /mnt/hddcctv ===
+TARGET       SOURCE    FSTYPE OPTIONS
+/mnt/hddcctv /dev/sdc1 ext4   rw,relatime
+
+=== FSTAB ===
+# <file system> <mount point> <type> <options> <dump> <pass>
+/dev/pve/root / ext4 errors=remount-ro 0 1
+UUID=F225-A757 /boot/efi vfat defaults 0 1
+/dev/pve/swap none swap sw 0 0
+proc /proc proc defaults 0 0
+UUID=6a9f537a-db44-4c58-aa7d-3a65eb21e31f /mnt/hddcctv ext4 defaults,nofail,x-systemd.device-timeout=10 0 2
+UUID=01DB2B5BD4FED390 /mnt/hdd-share ntfs-3g defaults,uid=100000,gid=100000,umask=000,nofail,x-systemd.device-timeout=10 0 0

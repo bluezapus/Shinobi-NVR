@@ -1,0 +1,7 @@
+# <file system> <mount point> <type> <options> <dump> <pass>
+/dev/pve/root / ext4 errors=remount-ro 0 1
+UUID=F225-A757 /boot/efi vfat defaults 0 1
+/dev/pve/swap none swap sw 0 0
+proc /proc proc defaults 0 0
+UUID=6a9f537a-db44-4c58-aa7d-3a65eb21e31f /mnt/hddcctv ext4 defaults,nofail,x-systemd.device-timeout=10 0 2
+UUID=01DB2B5BD4FED390 /mnt/hdd-share ntfs-3g defaults,uid=100000,gid=100000,umask=000,nofail,x-systemd.device-timeout=10 0 0

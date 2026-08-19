@@ -30,67 +30,34 @@ from consuming the Proxmox system volume.
 
 ## Architecture
 
-```text
-                         Production LAN
-                              │
-                         Network Switch
-                              │
-                             nic0
-                              │
-                           vmbr0
-                              │
-                    ┌─────────┴─────────┐
-                    │                   │
-              Proxmox VE           LXC Container
-                    │                 CT 100
-                    │                   │
-                    │                Shinobi
-                    │                   │
-                    │                 RTSP
-                    │                   │
-                    │            ┌──────┴──────┐
-                    │            │             │
-                    │          CAM01         CAM16
-                    │
-                    │
-             ┌──────┴──────┐
-             │             │
-          SSD/LVM       CCTV HDD
-             │             │
-         LXC Root      /mnt/hddcctv
-          64 GB             │
-                            │
-                       /mnt/storage
-                            │
-                       CCTV Recordings
-```
+![Keterangan](architecture.png)
 
 ---
 
 ## Key Components
 
-| Component | Configuration |
-|---|---|
-| Hypervisor | Proxmox VE `9.2.4` |
-| NVR | Shinobi |
-| Shinobi Deployment | LXC Container |
-| Container ID | `100` |
-| Guest OS | Ubuntu 22.04.5 LTS |
-| Architecture | `amd64` |
-| CPU Allocation | 4 vCPU |
-| Memory | 8 GB |
-| SWAP | 512 MB |
-| Root Disk | 64 GB |
-| Camera Count | 16 |
-| Camera Model | TP-Link Tapo C220 |
-| Streaming Protocol | RTSP |
-| RTSP Port | `554` |
-| CCTV Storage | 3.6 TB HDD |
-| Filesystem | `ext4` |
-| Proxmox CCTV Mount | `/mnt/hddcctv` |
-| Shinobi Storage Mount | `/mnt/storage` |
-| Network Bridge | `vmbr0` |
-| Physical NIC | `nic0` |
+| Component             | Configuration      |
+| --------------------- | ------------------ |
+| Hypervisor            | Proxmox VE `9.2.4` |
+| NVR                   | Shinobi            |
+| Shinobi Deployment    | LXC Container      |
+| Container ID          | `100`              |
+| Guest OS              | Ubuntu 22.04.5 LTS |
+| Architecture          | `amd64`            |
+| CPU Allocation        | 4 vCPU             |
+| Memory                | 8 GB               |
+| SWAP                  | 512 MB             |
+| Root Disk             | 64 GB              |
+| Camera Count          | 16                 |
+| Camera Model          | TP-Link Tapo C220  |
+| Streaming Protocol    | RTSP               |
+| RTSP Port             | `554`              |
+| CCTV Storage          | 3.6 TB HDD         |
+| Filesystem            | `ext4`             |
+| Proxmox CCTV Mount    | `/mnt/hddcctv`     |
+| Shinobi Storage Mount | `/mnt/storage`     |
+| Network Bridge        | `vmbr0`            |
+| Physical NIC          | `nic0`             |
 
 ---
 
@@ -141,29 +108,8 @@ Proxmox host, and LXC containers.
 The system uses separate storage for the operating system and CCTV
 recordings.
 
-```text
-Proxmox SSD
-    │
-    └── local-lvm
-          │
-          └── Shinobi LXC Root Disk
-                 64 GB
+![Keterangan](architecture-storage.png)
 
-
-Dedicated CCTV HDD
-    │
-    └── /dev/sdc1
-          │
-          └── ext4
-                │
-                └── /mnt/hddcctv
-                       │
-                       └── LXC Mount
-                              │
-                              └── /mnt/storage
-                                     │
-                                     └── CCTV Recordings
-```
 
 The dedicated CCTV HDD has a capacity of approximately `3.6 TB`.
 
@@ -181,31 +127,7 @@ The CCTV infrastructure operates on a production LAN.
 
 For public documentation, production IP addresses are sanitized.
 
-```text
-Production LAN
-192.168.10.0/24
-        │
-     Switch
-        │
-      nic0
-        │
-     vmbr0
-        │
-   ┌────┴────┐
-   │         │
-Proxmox    LXC 100
-Host       Shinobi
-   │         │
-   │        eth0
-   │         │
-   └────┬────┘
-        │
-     Network
-        │
-   ┌────┴────┐
-   │         │
- CAM01 ... CAM16
-```
+![Keterangan](architecture-network.png)
 
 Sanitized addressing:
 
@@ -227,35 +149,7 @@ Sanitized addressing:
 The NVR manages 16 IP cameras.
 
 Each camera provides an RTSP stream to Shinobi.
-
-```text
-IP Camera
-    │
-    │ RTSP : 554
-    ▼
-Network Switch
-    │
-    ▼
-Proxmox Network
-    │
-    ▼
-vmbr0
-    │
-    ▼
-Shinobi LXC
-    │
-    ▼
-Shinobi NVR
-    │
-    ▼
-FFmpeg
-    │
-    ▼
-CCTV Recording
-    │
-    ▼
-/mnt/storage
-```
+![Keterangan](architecture-cctv.png)
 
 The documented camera configuration uses:
 
@@ -276,16 +170,7 @@ against the final production configuration.
 The Shinobi NVR runs inside an unprivileged LXC container.
 
 Current environment:
-
-```text
-Ubuntu 22.04.5 LTS
-        │
-        ├── Node.js 18.20.8
-        ├── npm 10.9.8
-        ├── FFmpeg 4.4.2
-        ├── MariaDB 10.6.23
-        └── Shinobi
-```
+![Keterangan](environment.png)
 
 The Shinobi source is located at:
 
@@ -342,15 +227,15 @@ The public documentation intentionally does not expose:
 
 The project documentation is organized into seven stages.
 
-| Document | Description |
-|---|---|
-| [`01-requirement.md`](01-requirement.md) | Hardware, software, CCTV, network, storage, and deployment requirements |
-| [`02-architecture.md`](02-architecture.md) | Overall infrastructure architecture and design |
-| [`03-proxmox.md`](03-proxmox.md) | Proxmox VE host and Shinobi LXC configuration |
-| [`04-network.md`](04-network.md) | Network topology, bridge, addressing, and RTSP connectivity |
-| [`05-shinobi.md`](05-shinobi.md) | Shinobi NVR software environment and configuration |
-| [`06-rtsp-cctv.md`](06-rtsp-cctv.md) | RTSP camera integration and CCTV stream architecture |
-| [`07-storage.md`](07-storage.md) | CCTV storage architecture, mount points, filesystem, and capacity |
+| Document                                   | Description                                                             |
+| ------------------------------------------ | ----------------------------------------------------------------------- |
+| [`01-requirement.md`](01-requirement.md)   | Hardware, software, CCTV, network, storage, and deployment requirements |
+| [`02-architecture.md`](02-architecture.md) | Overall infrastructure architecture and design                          |
+| [`03-proxmox.md`](03-proxmox.md)           | Proxmox VE host and Shinobi LXC configuration                           |
+| [`04-network.md`](04-network.md)           | Network topology, bridge, addressing, and RTSP connectivity             |
+| [`05-shinobi.md`](05-shinobi.md)           | Shinobi NVR software environment and configuration                      |
+| [`06-rtsp-cctv.md`](06-rtsp-cctv.md)       | RTSP camera integration and CCTV stream architecture                    |
+| [`07-storage.md`](07-storage.md)           | CCTV storage architecture, mount points, filesystem, and capacity       |
 
 ---
 
@@ -367,46 +252,14 @@ CCTV Disk : 3.6 TB
 ```
 
 The separation between root storage and recording storage is intentional.
-
-```text
-Operating System
-      │
-      ▼
-   64 GB SSD/LVM
-      │
-      ▼
- Shinobi Application
-
-
-CCTV Recordings
-      │
-      ▼
-  3.6 TB HDD
-      │
-      ▼
- /mnt/storage
-```
+![Keterangan](allocation.png)
 
 ---
 
 ## Storage Design
 
 The CCTV storage is mounted persistently on the Proxmox host.
-
-```text
-/dev/sdc1
-    │
-    │ ext4
-    ▼
-/mnt/hddcctv
-    │
-    │ LXC mp0
-    ▼
-/mnt/storage
-    │
-    ▼
-Shinobi
-```
+![Keterangan](architecture-storage02.png)
 
 The Proxmox host uses `/etc/fstab` to mount the filesystem.
 
