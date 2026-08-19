@@ -149,6 +149,7 @@ Sanitized addressing:
 The NVR manages 16 IP cameras.
 
 Each camera provides an RTSP stream to Shinobi.
+
 ![CCTV-ARC](images/architecture-cctv.png)
 
 The documented camera configuration uses:
@@ -170,6 +171,7 @@ against the final production configuration.
 The Shinobi NVR runs inside an unprivileged LXC container.
 
 Current environment:
+
 ![ENVI](images/environment.png)
 
 The Shinobi source is located at:
